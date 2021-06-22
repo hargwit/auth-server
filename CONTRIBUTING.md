@@ -2,9 +2,36 @@
 
 ## Contents
 
+- [Debugging](#debugging)
 - [Git hooks](#git-hooks)
 - [Depedencies](#dependencies)
 - [Committing and merging](#committing-and-merging)
+
+## Debugging
+
+The project can be run with the vscode debugger using the following
+`.vscode/launch.json` file configuration:
+
+```json
+{
+ "version": "0.2.0",
+ "configurations": [
+  {
+   "type": "node",
+   "request": "launch",
+   "name": "Launch Program",
+   "program": "${workspaceFolder}/dist/index.js",
+   "preLaunchTask": "tsc: build - tsconfig.json",
+   "sourceMaps": true,
+   "trace": "all",
+   "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+  }
+ ]
+}
+```
+
+This configuration will call typescript to build the project before debugging
+with node.
 
 ## Git hooks
 
