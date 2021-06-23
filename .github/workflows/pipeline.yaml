@@ -36,5 +36,5 @@ jobs:
                   REDIS_PORT: ${{ job.services.redis.ports[6379] }}
                   MYSQL_HOST: mysql
                   MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
-                  MYSQL_USER: ${{ job.services.mysql.env[MYSQL_USER] }}
-                  MYSQL_PASSWORD: ${{ job.services.mysql.env[MYSQL_PASSWORD] }}
+                  MYSQL_USER: ${{ job.services.mysql.env.MYSQL_USER }}
+                  MYSQL_PASSWORD: ${{ job.services.mysql.env.MYSQL_PASSWORD }}
