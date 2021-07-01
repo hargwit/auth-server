@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# IDE
+.vscode/
+
+# Kubernetes files
+k8s/
+
+# Linter and formatter files
+.eslint*
+.prettier*
+
+# Commitlint
+.commitlint*
+
+# Markdown files
+*.md
+
+# Dev files
+nodemon.json
