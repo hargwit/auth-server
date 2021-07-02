@@ -1,0 +1,6 @@
+bases:
+    - ../base
+namePrefix: prod-
+images:
+    - name: auth-server
+      newTag: $VERSION
