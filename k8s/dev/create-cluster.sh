@@ -2,6 +2,8 @@
 
 dir=$(dirname $BASH_SOURCE[0])
 
+echo $dir
+
 kind create cluster --config="$dir/cluster-config.yaml"
 
 VERSION=$(curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/stable.txt)
