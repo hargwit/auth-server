@@ -22,7 +22,7 @@ jobs:
     integration-test:
         runs-on: ubuntu-latest
         container:
-            image: gcr.io/k8s-skaffold/skaffold:v1.15.0
+            image: gcr.io/k8s-skaffold/skaffold:v1.27.0
         steps:
             - name: Check out code
               uses: actions/checkout@v2
@@ -35,7 +35,7 @@ jobs:
               run: GO111MODULE=on go get sigs.k8s.io/kind
 
             - name: Build cluster
-              run: PATH=$(go env GOPATH)/bin:$PATH k8s/dev/create-cluster.sh
+              run: PATH=$(go env GOPATH)/bin:$PATH ./k8s/dev/create-cluster.sh
 
             - name: Deploy app
               run: skaffold run
