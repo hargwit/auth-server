@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dir=$(dirname ${BASH_SOURCE[0]})
+dir=$(dirname $BASH_SOURCE[0])
 
 kind create cluster --config="$dir/cluster-config.yaml"
 
