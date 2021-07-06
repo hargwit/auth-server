@@ -1,6 +1,0 @@
-bases:
-    - ../base
-namePrefix: dev-
-images:
-    - name: auth-server
-      newTag: 1.4.0
