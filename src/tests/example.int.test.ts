@@ -1,3 +1,18 @@
-test('envs should be available', () => {
-    console.log(process.env)
+import axios from 'axios'
+
+const { APP_URL } = process.env
+
+test('should be alive', (done) => {
+    axios
+        .get(`${APP_URL}/healthcheck`)
+        .then((res) => {
+            expect(res.status).toBe(200)
+
+            done()
+        })
+        .catch((error) => {
+            expect(error).toBeNull()
+
+            done()
+        })
 })

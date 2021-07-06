@@ -33,6 +33,7 @@
         "@types/jest": "^26.0.23",
         "@typescript-eslint/eslint-plugin": "^4.28.0",
         "@typescript-eslint/parser": "^4.28.0",
+        "axios": "^0.21.1",
         "cross-env": "^7.0.3",
         "eslint": "^7.29.0",
         "eslint-config-prettier": "^8.3.0",
@@ -51,7 +52,7 @@
         "hooks": {
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
             "pre-commit": "lint-staged",
-            "pre-push": "npm test"
+            "pre-push": "npm test-unit"
         }
     },
     "lint-staged": {
