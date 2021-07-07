@@ -1,10 +1,8 @@
 #!/bin/sh
 
-dir=$(dirname $BASH_SOURCE[0])
+echo "Using cluster config at $1"
 
-echo $dir
-
-kind create cluster --config="$dir/cluster-config.yaml"
+kind create cluster --config=$1
 
 VERSION=$(curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/stable.txt)
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/${VERSION}/deploy/static/provider/kind/deploy.yaml
