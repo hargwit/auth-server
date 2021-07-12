@@ -35,7 +35,7 @@ jobs:
               run: GO111MODULE=on go get sigs.k8s.io/kind
 
             - name: Build cluster
-              run: PATH=$(go env GOPATH)/bin:$PATH ./k8s/dev/create-cluster.sh ./k8s/dev/cluster-config.yaml
+              run: PATH=$(go env GOPATH)/bin:$PATH ./k8s/create-cluster.sh ./k8s/cluster-config.yaml
 
             - name: Deploy app
               run: skaffold run -p development
