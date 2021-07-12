@@ -22,8 +22,13 @@ profiles:
     kustomize:
       paths:
       - k8s/base/mysql
-- name: prod
+- name: development
   deploy:
     kustomize:
       paths:
-      - k8s/prod
+      - k8s/overlays/development
+- name: production
+  deploy:
+    kustomize:
+      paths:
+      - k8s/overlays/production
