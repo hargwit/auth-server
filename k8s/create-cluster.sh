@@ -12,7 +12,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/${VE
 
 echo "Waiting for ingress to start ..."
 
-sleep 10
+sleep 20
 
 kubectl wait --namespace ingress-nginx \
   --for=condition=ready pod \
