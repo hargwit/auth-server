@@ -32,18 +32,19 @@ jobs:
             - name: Install Kind
               run: GO111MODULE=on go get sigs.k8s.io/kind
 
-            - name: Install skaffold
+            - name: Install Skaffold
               run: curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-arm64 && sudo install skaffold /usr/local/bin/
 
             - name: Build cluster
               run: PATH=$(go env GOPATH)/bin:$PATH ./k8s/create-cluster.sh ./k8s/cluster-config.yaml
-#             - name: Deploy app
-#               run: skaffold run -p development
 
-#             - name: Install depedencies
-#               run: npm ci
+            - name: Deploy app
+              run: skaffold run -p development
 
-#             - name: Test
-#               run: npm run test-int
-#               env:
-#                   APP_URL: http://localhost:80
+            - name: Install depedencies
+              run: npm ci
+
+            - name: Test
+              run: npm run test-int
+              env:
+                  APP_URL: http://localhost:80
