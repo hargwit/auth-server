@@ -4,7 +4,7 @@ echo "Using cluster config at $1"
 
 kind create cluster --config=$1
 
-echo "Cluster config"
+echo "Cluster info"
 kubectl cluster-info --context kind-auth-example
 
 VERSION=$(curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/stable.txt)
