@@ -38,7 +38,7 @@ jobs:
               run: PATH=$(go env GOPATH)/bin:$PATH ./k8s/dev/create-cluster.sh ./k8s/dev/cluster-config.yaml
 
             - name: Deploy app
-              run: skaffold run
+              run: skaffold run -p development
 
             - name: Install depedencies
               run: npm ci
