@@ -1,24 +1,6 @@
-on: [push, pull_request]
+on: pull_request
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Check out code
-              uses: actions/checkout@v2
-
-            - name: Install depedencies
-              run: npm ci
-
-            - name: Lint
-              run: npm run lint
-
-            - name: Test
-              run: npm run test-unit
-
-            - name: Build
-              run: npm run build
-
     integration-test:
         runs-on: ubuntu-latest
         steps:
