@@ -1,0 +1,39 @@
+apiVersion: skaffold/v2beta18
+kind: Config
+metadata:
+    name: auth-server
+build:
+    artifacts:
+        - image: auth-server
+          docker:
+              dockerfile: Dockerfile
+deploy:
+    kustomize:
+        paths:
+            - k8s/base
+profiles:
+    - name: auth-server
+      deploy:
+          kustomize:
+              paths:
+                  - k8s/base/auth-server
+    - name: mysql
+      deploy:
+          kustomize:
+              paths:
+                  - k8s/base/mysql
+    - name: development
+      deploy:
+          kustomize:
+              paths:
+                  - k8s/overlays/development
+    - name: production
+      build:
+          artifacts:
+              - image: hargwit/auth-server
+                docker:
+                    dockerfile: Dockerfile
+      deploy:
+          kustomize:
+              paths:
+                  - k8s/overlays/production
