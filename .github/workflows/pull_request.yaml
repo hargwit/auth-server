@@ -20,7 +20,7 @@ jobs:
             - name: Build cluster
               run: PATH=$(go env GOPATH)/bin:$PATH ./k8s/create-cluster.sh ./k8s/cluster-config.yaml
 
-            - name: Deploy app
+            - name: Deploy to Kind
               run: skaffold run -p development
 
             - name: Install depedencies

@@ -19,10 +19,21 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - uses: google-github-actions/setup-gcloud@master
+            - name: Install GCloud
+              uses: google-github-actions/setup-gcloud@master
               with:
                   project_id: ${{ secrets.GKE_PROJECT }}
                   service_account_key: ${{ secrets.GKE_SA_KEY }}
 
-            - name: Use gcloud CLI
-              run: gcloud info
+            - name: Set kube context
+              uses: google-github-actions/get-gke-credentials@main
+              with:
+                  cluster_name: ${{ env.GKE_CLUSTER }}
+                  location: ${{ env.GKE_ZONE }}
+                  credentials: ${{ secrets.GKE_SA_KEY }}
+
+            - name: Install Skaffold
+              run: curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && sudo install skaffold /usr/local/bin/
+
+            - name: Deploy to GKE
+              run: skaffold run -p production
