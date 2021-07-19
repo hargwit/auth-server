@@ -5,5 +5,9 @@ namespace: prod
 bases:
     - ../../base
 
+images:
+    - name: auth-server
+      newName: hargwit/auth-server
+
 resources:
     - namespace.yaml
