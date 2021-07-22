@@ -1,0 +1,45 @@
+on:
+    push:
+        branches:
+            - ci/deploy
+            - develop
+
+env:
+    PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+    GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+    GKE_ZONE: ${{ secrets.GKE_ZONE }}
+    GKE_SA_KEY: ${{ secrets.GKE_SA_KEY }}
+    DOCKERHUB_API_KEY: ${{ secrets.DOCKERHUB_API_KEY }}
+    DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Install GCloud
+              uses: google-github-actions/setup-gcloud@master
+              with:
+                  project_id: ${{ env.GKE_PROJECT }}
+                  service_account_key: ${{ env.GKE_SA_KEY }}
+
+            - name: Set kube context
+              uses: google-github-actions/get-gke-credentials@main
+              with:
+                  cluster_name: ${{ env.GKE_CLUSTER }}
+                  location: ${{ env.GKE_ZONE }}
+                  credentials: ${{ env.GKE_SA_KEY }}
+
+            - name: Login to Docker Hub
+              uses: docker/login-action@v1
+              with:
+                  username: ${{ env.DOCKERHUB_USERNAME }}
+                  password: ${{ env.DOCKERHUB_API_KEY }}
+
+            - name: Install Skaffold
+              run: curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && sudo install skaffold /usr/local/bin/
+
+            - name: Deploy to GKE
+              run: skaffold run -p qa
