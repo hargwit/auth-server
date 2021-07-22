@@ -1,11 +1,6 @@
-# on:
-#     release:
-#         types: [created]
-
 on:
-    push:
-        branches:
-            - ci/deploy
+    release:
+        types: [created]
 
 env:
     PROJECT_ID: ${{ secrets.GKE_PROJECT }}
