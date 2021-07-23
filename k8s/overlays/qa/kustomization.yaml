@@ -11,3 +11,4 @@ images:
 
 resources:
     - namespace.yaml
+    - ingress.yaml
