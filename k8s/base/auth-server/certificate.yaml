@@ -8,3 +8,5 @@ spec:
         name: auth-server-tls
         kind: Issuer
         group: cert-manager.io
+    emailAddresses:
+        - harrygwithers@gmail.com
