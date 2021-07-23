@@ -13,7 +13,7 @@ env:
     DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
 jobs:
-    release:
+    deploy:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
