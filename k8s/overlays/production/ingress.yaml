@@ -4,7 +4,7 @@ metadata:
     name: auth-ingress
 spec:
     rules:
-        - host: 34.118.36.150
+        - host: auth.hargwit.com
           http:
               paths:
                   - path: /
