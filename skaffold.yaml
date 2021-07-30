@@ -27,16 +27,11 @@ profiles:
           kustomize:
               paths:
                   - k8s/overlays/development
-    - name: production
-      build:
-          artifacts:
-              - image: hargwit/auth-server
-                docker:
-                    dockerfile: Dockerfile
+    - name: test
       deploy:
           kustomize:
               paths:
-                  - k8s/overlays/production
+                  - k8s/overlays/test
     - name: qa
       build:
           artifacts:
@@ -47,3 +42,13 @@ profiles:
           kustomize:
               paths:
                   - k8s/overlays/qa
+    - name: production
+      build:
+          artifacts:
+              - image: hargwit/auth-server
+                docker:
+                    dockerfile: Dockerfile
+      deploy:
+          kustomize:
+              paths:
+                  - k8s/overlays/production
