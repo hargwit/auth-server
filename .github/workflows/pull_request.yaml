@@ -7,6 +7,9 @@ jobs:
             - name: Check out code
               uses: actions/checkout@v2
 
+            - name: Setup DNS
+              run: sudo echo "127.0.0.1 auth-test.hargwit.com" >> /etc/hosts
+
             - uses: actions/setup-go@v1
               with:
                   go-version: 1.13
@@ -16,9 +19,6 @@ jobs:
 
             - name: Install Skaffold
               run: curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && sudo install skaffold /usr/local/bin/
-
-            - name: Setup DNS
-              run: sudo echo "127.0.0.1 auth-test.hargwit.com" >> /etc/hosts
 
             - name: Build cluster
               run: PATH=$(go env GOPATH)/bin:$PATH ./k8s/create-cluster.sh ./k8s/cluster-config.yaml
