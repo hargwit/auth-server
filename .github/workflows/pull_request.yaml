@@ -17,6 +17,9 @@ jobs:
             - name: Install Skaffold
               run: curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && sudo install skaffold /usr/local/bin/
 
+            - name: Setup DNS
+              run: sudo echo "127.0.0.1 auth-test.hargwit.com" >> /etc/hosts
+
             - name: Build cluster
               run: PATH=$(go env GOPATH)/bin:$PATH ./k8s/create-cluster.sh ./k8s/cluster-config.yaml
 
@@ -29,4 +32,4 @@ jobs:
             - name: Test
               run: npm run test-int
               env:
-                  APP_URL: http://localhost:80
+                  APP_URL: http://auth-test.hargwit.com
