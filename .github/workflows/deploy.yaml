@@ -1,7 +1,6 @@
 on:
     push:
         branches:
-            - ci/deploy
             - develop
 
 env:

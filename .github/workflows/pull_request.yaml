@@ -8,7 +8,7 @@ jobs:
               uses: actions/checkout@v2
 
             - name: Setup DNS
-              run: echo "127.0.0.1 auth-test.hargwit.com" >> sudo tee -a /etc/hosts
+              run: echo "localhost auth-test.hargwit.com" >> sudo tee -a /etc/hosts
 
             - uses: actions/setup-go@v1
               with:
@@ -28,6 +28,9 @@ jobs:
 
             - name: Install depedencies
               run: npm ci
+
+            - name: Debug
+              run: more /etc/hosts
 
             - name: Test
               run: npm run test-int
