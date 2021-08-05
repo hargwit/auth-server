@@ -4,5 +4,5 @@ resources:
     - statefulset.yaml
 
 commonLabels:
-  skaffold.dev/run-id: static
-  app.kubernetes.io/managed-by: skaffold
+    skaffold.dev/run-id: static
+    app.kubernetes.io/managed-by: skaffold
