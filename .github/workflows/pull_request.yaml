@@ -7,9 +7,6 @@ jobs:
             - name: Check out code
               uses: actions/checkout@v2
 
-            - name: Setup DNS
-              run: echo "localhost auth-test.hargwit.com" >> sudo tee -a /etc/hosts
-
             - uses: actions/setup-go@v1
               with:
                   go-version: 1.13
@@ -29,10 +26,7 @@ jobs:
             - name: Install depedencies
               run: npm ci
 
-            - name: Debug
-              run: more /etc/hosts
-
             - name: Test
               run: npm run test-int
               env:
-                  APP_URL: http://auth-test.hargwit.com
+                  APP_URL: http://localhost
