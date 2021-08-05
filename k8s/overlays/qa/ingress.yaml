@@ -12,7 +12,6 @@ spec:
         - hosts:
               - auth-qa.hargwit.com
           secretName: tls-cert-secret
-spec:
     rules:
         - host: auth-qa.hargwit.com
           http:
