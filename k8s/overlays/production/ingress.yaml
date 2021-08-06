@@ -4,14 +4,7 @@ metadata:
     name: auth-ingress
     annotations:
         kubernetes.io/ingress.class: nginx
-        cert-manager.io/issuer: letsencrypt-prod
-        cert-manager.io/issue-temporary-certificate: 'true'
-        acme.cert-manager.io/http01-edit-in-place: 'true'
 spec:
-    tls:
-        - hosts:
-              - auth.hargwit.com
-          secretName: tls-cert-secret
     rules:
         - host: auth.hargwit.com
           http:
