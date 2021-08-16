@@ -22,7 +22,7 @@ profiles:
           kustomize:
               paths:
                   - k8s/base/mysql
-    - name: development
+    - name: dev
       deploy:
           kustomize:
               paths:
