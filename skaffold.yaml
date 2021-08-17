@@ -22,11 +22,26 @@ profiles:
           kustomize:
               paths:
                   - k8s/base/mysql
-    - name: development
+    - name: dev
       deploy:
           kustomize:
               paths:
                   - k8s/overlays/development
+    - name: test
+      deploy:
+          kustomize:
+              paths:
+                  - k8s/overlays/test
+    - name: qa
+      build:
+          artifacts:
+              - image: hargwit/auth-server
+                docker:
+                    dockerfile: Dockerfile
+      deploy:
+          kustomize:
+              paths:
+                  - k8s/overlays/qa
     - name: production
       build:
           artifacts:
