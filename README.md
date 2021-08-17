@@ -30,6 +30,9 @@ The motivation for this project is two-fold:
 
 ## Getting started
 
+Follow these steps to create a "throw-away" kubernetes cluster on your local machine that is representative of the live
+environment.
+
 Pre-requisites:
 
 - [Docker](https://www.docker.com/)
@@ -88,8 +91,7 @@ The test environment is built during the [pull_request](./.github/workflows/pull
 action pipeline builds a [Kind](https://kind.sigs.k8s.io/) cluster before using [Skaffold](https://skaffold.dev) to
 build and deploy the application images to the cluster.
 
-This environment is entirely private to the Github action that is running and it is thrown away after the action
-finishes runnning.
+This environment is entirely private to the Github action and it is thrown away after the action finishes runnning.
 
 Once the environment is deployed, the action runs integration tests against the cluster. This provides a high level of
 confidence as the cluster is a replication of the production environment.
