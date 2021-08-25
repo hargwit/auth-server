@@ -22,11 +22,6 @@ profiles:
           kustomize:
               paths:
                   - k8s/base/mysql
-    - name: dev
-      deploy:
-          kustomize:
-              paths:
-                  - k8s/overlays/development
     - name: test
       deploy:
           kustomize:

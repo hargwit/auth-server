@@ -53,15 +53,14 @@ Build the images and deploy them to the cluster with [Skaffold](https://skaffold
 [Kustomize](https://kustomize.io/) (built into Kubectl).
 
 ```sh
-skaffold run -p dev
+skaffold dev -p test
 ```
 
-Optionally you can add the following line to your `/etc/hosts` file so that your locally running cluster will be
-acccessible at a production like endpoint [`auth-dev.hargwit.com`](http://auth-dev.hargwit.com).
+This command will watch the code for changes so that it can rebuild and redeploy the cluster providing hot-reloading
+functionality.
 
-```sh
-locahost auth-dev.hargwit.com
-```
+This will also deploy the integration tests to the cluster, Skaffold will print the result of these tests to the console
+after they have run.
 
 ## Environments
 
@@ -73,28 +72,19 @@ files, storing the images in docker repositories and deploying them to the targe
 corresponding [Skaffold profile](https://skaffold.dev/docs/environment/profiles/) which describes the build and deploy
 process.
 
-### Development
-
-The development environment runs on your local development machine. You can start this environment up by following the
-steps in [Getting started](#getting-started).
-
-[Skaffold](https://skaffold.dev) also supports hot-reloading environments on code changes. Run the following command,
-make a change to the code and see your change automatically re-deployed to the cluster.
-
-```sh
-skaffold dev -p dev
-```
-
 ### Test
 
-The test environment is built during the [pull_request](./.github/workflows/pull_request.yaml) pipeline. This Github
-action pipeline builds a [Kind](https://kind.sigs.k8s.io/) cluster before using [Skaffold](https://skaffold.dev) to
-build and deploy the application images to the cluster.
+The test environment can be used to develop against as the images and tests are automatically re-run on code changes.
+The application itself will be available at [localhost](http://localhost).
+
+The test environment is also built during the [pull_request](./.github/workflows/pull_request.yaml) pipeline. This
+Github action pipeline builds a [Kind](https://kind.sigs.k8s.io/) cluster before using [Skaffold](https://skaffold.dev)
+to build and deploy the application images to the cluster.
 
 This environment is entirely private to the Github action and it is thrown away after the action finishes runnning.
 
-Once the environment is deployed, the action runs integration tests against the cluster. This provides a high level of
-confidence as the cluster is a replication of the production environment.
+The integration tests running in the cluster provide high confidence that the auth-server deployment is working
+correctly.
 
 ### QA
 
