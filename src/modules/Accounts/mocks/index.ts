@@ -1,0 +1,1 @@
+export { mockUserRepositoryFactory } from './users'
