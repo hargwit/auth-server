@@ -16,7 +16,7 @@ test('should be alive', async () => {
 
 test('should be able to sign up', async () => {
     await axios
-        .post(`${APP_URL}/signup`, {
+        .post(`${APP_URL}/auth/signup`, {
             email: faker.internet.email(),
             password: 'StrongPassword1@',
         })
