@@ -7,7 +7,7 @@ const api = (): API => ({
             method: 'POST',
             url: '/signup',
             handler: (_, res) => {
-                res.send('OK')
+                res.status(200).send('OK')
             },
         },
     ],

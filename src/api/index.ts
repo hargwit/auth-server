@@ -11,6 +11,10 @@ const configure = ({ app }: { app: Application }): void => {
 
         app.use(rootUrl, createRouter(routes))
     })
+
+    app.get('/healthcheck', (_, res) => {
+        res.status(200).send('OK')
+    })
 }
 
 export { configure }
