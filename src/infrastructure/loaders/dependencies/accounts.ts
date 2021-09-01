@@ -1,4 +1,4 @@
-import { asFunction, AwilixContainer, Lifetime } from 'awilix'
+import { asFunction, asValue, AwilixContainer, Lifetime } from 'awilix'
 
 import { memoryUserRepository } from '../../memory'
 
@@ -9,6 +9,7 @@ import { registrationFactory } from '../../../modules/Accounts'
  */
 const register = ({ container }: { container: AwilixContainer }): void => {
     container.register({
+        initialUsers: asValue([]),
         userRepository: asFunction(memoryUserRepository, { lifetime: Lifetime.SINGLETON }),
         registration: asFunction(registrationFactory),
     })

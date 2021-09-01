@@ -12,7 +12,7 @@ export const load = ({ app }: { app: Application }): void => {
         COOKIE_NAME = '_auth',
         REDIS_HOST = 'localhost',
         REDIS_PORT = '6379',
-        SESSION_SECRET = '',
+        SESSION_SECRET = 'SECRET',
         COOKIE_MAX_AGE = '900000', // 15 mins
     } = process.env
 

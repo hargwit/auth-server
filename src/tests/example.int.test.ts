@@ -22,8 +22,6 @@ test('should be able to sign up', async () => {
         })
         .then((res) => {
             expect(res.status).toBe(200)
-
-            expect(res.headers['set-cookie']).not.toBeUndefined()
         })
         .catch((error) => {
             expect(error).toBeNull()
