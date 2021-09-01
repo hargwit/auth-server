@@ -3,6 +3,7 @@ import { Application } from 'express'
 import * as server from './server'
 import * as logger from './logger'
 import * as api from './api'
+import * as session from './session'
 import { AwilixContainer } from 'awilix'
 
 /**
@@ -14,6 +15,8 @@ const load = ({ container }: { container: AwilixContainer }): Application => {
     logger.load({ app })
 
     api.load({ app, container })
+
+    session.load({ app })
 
     return app
 }

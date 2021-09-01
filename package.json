@@ -29,9 +29,13 @@
     "devDependencies": {
         "@commitlint/cli": "^12.1.4",
         "@commitlint/config-conventional": "^12.1.4",
+        "@types/connect-redis": "0.0.17",
         "@types/express": "^4.17.12",
+        "@types/express-session": "^1.17.4",
         "@types/faker": "^5.5.8",
         "@types/jest": "^26.0.23",
+        "@types/redis": "^2.8.31",
+        "@types/uuid": "^8.3.1",
         "@typescript-eslint/eslint-plugin": "^4.28.0",
         "@typescript-eslint/parser": "^4.28.0",
         "axios": "^0.21.1",
@@ -75,8 +79,12 @@
     },
     "dependencies": {
         "awilix": "^5.0.1",
+        "connect-redis": "^6.0.0",
         "dotenv": "^10.0.0",
         "express": "^4.17.1",
-        "morgan": "^1.10.0"
+        "express-session": "^1.17.2",
+        "morgan": "^1.10.0",
+        "redis": "^3.1.2",
+        "uuid": "^8.3.2"
     }
 }
