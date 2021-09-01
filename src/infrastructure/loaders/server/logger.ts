@@ -4,7 +4,7 @@ import logger from 'morgan'
 /**
  * Loads logger middleware.
  */
-const load = (app: Application): void => {
+const load = ({ app }: { app: Application }): void => {
     const isDev = process.env.NODE_ENV !== 'production'
 
     app.use(
