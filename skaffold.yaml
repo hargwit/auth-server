@@ -12,16 +12,6 @@ deploy:
         paths:
             - k8s/base
 profiles:
-    - name: auth-server
-      deploy:
-          kustomize:
-              paths:
-                  - k8s/base/auth-server
-    - name: mysql
-      deploy:
-          kustomize:
-              paths:
-                  - k8s/base/mysql
     - name: test
       deploy:
           kustomize:
