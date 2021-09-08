@@ -1,1 +1,1 @@
-export { mockUserRepositoryFactory } from './users'
+export { mockUserRepositoryFactory, fakeUser } from './users'
