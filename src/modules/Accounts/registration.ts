@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid'
-import { userFactory, UserRepository } from './users'
+import { userFactory, UserRepository, User } from './users'
 
 /**
  * Registration allows users to sign up
@@ -8,7 +8,7 @@ type Registration = {
     /**
      * Signs the user up
      */
-    signUp: (email: string, password: string) => Promise<void>
+    signUp: (email: string, password: string) => Promise<User>
 }
 
 /**
@@ -18,7 +18,9 @@ const registrationFactory = ({ userRepository }: { userRepository: UserRepositor
     signUp: async (email, password) => {
         const user = userFactory({ id: uuid(), email, password })
 
-        await userRepository.create(user, password)
+        const created = await userRepository.create(user, password)
+
+        return created
     },
 })
 

@@ -1,4 +1,5 @@
 import { AwilixContainer } from 'awilix'
+import passport from 'passport'
 import { Registration } from '../../modules/Accounts'
 import { API } from '../route'
 
@@ -11,12 +12,16 @@ const api = ({ container }: { container: AwilixContainer }): API => {
             {
                 method: 'POST',
                 url: '/signup',
-                handler: async (req, res) => {
+                handler: async (req, res, next) => {
                     const { email, password } = req.body
 
-                    await registration.signUp(email, password)
+                    const created = await registration.signUp(email, password).catch(next)
 
-                    res.status(200).send('OK')
+                    passport.authenticate('local', (error, user) => {
+                        if (error) return next(error)
+
+                        req.login(user, () => res.status(200).send({ user: created }))
+                    })
                 },
             },
         ],
