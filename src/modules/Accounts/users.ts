@@ -11,17 +11,18 @@ type User = {
 }
 
 /**
- * Builds a user from its parts
+ * The input given to a user factory.
  */
-const userFactory = ({
-    id,
-    email,
-    password: usersPassword,
-}: {
+type UserFactoryInput = {
     id: string
     email: string
     password: string
-}): User => ({
+}
+
+/**
+ * Builds a user from its parts
+ */
+const userFactory = ({ id, email, password: usersPassword }: UserFactoryInput): User => ({
     id,
     email,
     verifyPassword: (password: string) => usersPassword === password,
@@ -39,6 +40,12 @@ type UserRepository = {
      * Gets a user by its ID.
      */
     get: (id: string) => Promise<User>
+    /**
+     * Gets a user by any one of its properties.
+     *
+     * Throws if it finds more than one that matches.
+     */
+    getBy: (query: Partial<User>) => Promise<User>
 }
 
-export { User, userFactory, UserRepository }
+export { User, UserFactoryInput, userFactory, UserRepository }
