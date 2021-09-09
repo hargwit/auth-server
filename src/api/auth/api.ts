@@ -14,7 +14,7 @@ const api = ({ container }: { container: AwilixContainer }): API => {
                 handler: async (req, res) => {
                     const { email, password } = req.body
 
-                    await registration.signup(email, password)
+                    await registration.signUp(email, password)
 
                     res.status(200).send('OK')
                 },

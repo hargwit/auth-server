@@ -8,14 +8,14 @@ type Registration = {
     /**
      * Signs the user up
      */
-    signup: (email: string, password: string) => Promise<void>
+    signUp: (email: string, password: string) => Promise<void>
 }
 
 /**
  * Builds registration from its dependencies
  */
 const registrationFactory = ({ userRepository }: { userRepository: UserRepository }): Registration => ({
-    signup: async (email, password) => {
+    signUp: async (email, password) => {
         const user = userFactory({ id: uuid(), email, password })
 
         await userRepository.create(user, password)

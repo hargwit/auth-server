@@ -8,7 +8,7 @@ test('should be able to sign up', async () => {
 
     const registration = registrationFactory({ userRepository: mockUserRepository })
 
-    await registration.signup(faker.internet.email(), 'StrongPassword1@')
+    await registration.signUp(faker.internet.email(), 'StrongPassword1@')
 
     expect(mockUserRepository.create).toHaveBeenCalledTimes(1)
 })
