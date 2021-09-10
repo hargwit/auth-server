@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: auth-server-mysql
+    labels:
+        app: auth-server
+spec:
+    selector:
+        matchLabels:
+            app: auth-server
+            tier: mysql
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                app: auth-server
+                tier: mysql
+        spec:
+            containers:
+                - image: mysql:5.6
+                  name: mysql
+                  env:
+                      - name: MYSQL_ROOT_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: mysql-pass
+                                key: password
+                  ports:
+                      - containerPort: 3306
+                        name: mysql
+                  volumeMounts:
+                      - name: mysql-persistent-storage
+                        mountPath: /var/lib/mysql
+            volumes:
+                - name: mysql-persistent-storage
+                  persistentVolumeClaim:
+                      claimName: mysql-pv-claim

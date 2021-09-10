@@ -1,18 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: redis-deployment
+    name: auth-server-redis
     labels:
-        name: redis
+        name: auth-server
+        tier: redis
 spec:
     replicas: 1
     selector:
         matchLabels:
-            name: redis
+            app: auth-server
+            tier: redis
     template:
         metadata:
             labels:
-                name: redis
+                app: auth-server
+                tier: redis
         spec:
             subdomain: primary
             containers:
