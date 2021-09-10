@@ -8,6 +8,8 @@ const load = (): Application => {
 
     app.use(express.urlencoded({ extended: false }))
 
+    app.use(express.json())
+
     return app
 }
 

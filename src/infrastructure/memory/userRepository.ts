@@ -23,13 +23,13 @@ const memoryUserRepository = ({ initialUsers = [] }: { initialUsers?: User[] }):
         },
         getBy: async (query) => {
             const matchingUsers = users.filter((user) => {
+                let allMatch = true
+
                 Object.entries(query).forEach(([key, value]) => {
-                    if (user[key] === value) {
-                        return true
-                    }
+                    allMatch = allMatch && user[key] === value
                 })
 
-                return false
+                return allMatch
             })
 
             if (matchingUsers.length > 1) {

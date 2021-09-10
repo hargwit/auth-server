@@ -1,7 +1,7 @@
 import { Application } from 'express'
 import { AwilixContainer } from 'awilix'
 import passport from 'passport'
-import { Strategy } from 'passport-local'
+import { Strategy as PasswordStrategy } from 'passport-local'
 import { Accounts, User } from '../../../modules/Accounts'
 import { Authenticator } from '../../../modules/Authentication'
 
@@ -13,11 +13,12 @@ export const load = ({ app, container }: { app: Application; container: AwilixCo
     const accounts = container.resolve<Accounts>('accounts')
 
     passport.use(
-        new Strategy(
+        'password',
+        new PasswordStrategy(
             {
                 usernameField: 'email',
             },
-            async (email, password, done) => {
+            (email, password, done) => {
                 authenticator
                     .signIn(email, password)
                     .then((user) => done(null, user))
