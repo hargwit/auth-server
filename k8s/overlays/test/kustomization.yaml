@@ -9,3 +9,6 @@ resources:
     - namespace.yaml
     - ingress.yaml
     - test.yaml
+
+patchesStrategicMerge:
+    - env.yaml

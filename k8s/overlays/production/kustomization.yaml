@@ -12,3 +12,6 @@ images:
 resources:
     - namespace.yaml
     - ingress.yaml
+
+patchesStrategicMerge:
+    - env.yaml
